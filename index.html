@@ -3,604 +3,1555 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>TOUCH MOBILES | Narsipatnam</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#050505;
+    --card:#101010;
+    --card2:#161616;
+    --line:#292929;
+    --white:#fff;
+    --muted:#8c8c8c;
+    --green:#25D366;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-font-family:Inter,Arial,sans-serif;
-background:#050505;
-color:#fff;
-overflow-x:hidden
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--white);
+    overflow-x:hidden;
 }
-header{
-position:fixed;
-top:0;
-width:100%;
-z-index:1000;
-background:rgba(5,5,5,.82);
-backdrop-filter:blur(20px);
-border-bottom:1px solid rgba(255,255,255,.08)
+
+button,input,select,textarea{
+    font-family:inherit;
 }
-.nav{
-max-width:1250px;
-margin:auto;
-height:75px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 25px
+
+button{
+    cursor:pointer;
 }
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:74px;
+    z-index:1000;
+    background:rgba(5,5,5,.88);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid #222;
+}
+
+.nav-inner{
+    max-width:1300px;
+    height:100%;
+    margin:auto;
+    padding:0 25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
 .logo{
-font-size:25px;
-font-weight:900;
-letter-spacing:2px
+    background:none;
+    border:0;
+    color:#fff;
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:2px;
 }
-.logo span{color:#777}
-.navlinks{display:flex;gap:28px;align-items:center}
-.navlinks a{
-color:#ccc;
-text-decoration:none;
-font-size:14px;
-transition:.3s
+
+.logo span{
+    color:#777;
 }
-.navlinks a:hover{color:#fff}
-.cartBtn{
-background:#fff;
-color:#000;
-border:0;
-padding:11px 18px;
-border-radius:30px;
-font-weight:700;
-cursor:pointer
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
+
+.nav-links button{
+    background:none;
+    border:0;
+    color:#999;
+    padding:10px 14px;
+}
+
+.nav-links button:hover{
+    color:#fff;
+}
+
+.cart-btn{
+    background:#fff!important;
+    color:#000!important;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+.screen{
+    display:none;
+    min-height:100vh;
+    padding-top:74px;
+    animation:pageIn .4s ease;
+}
+
+.screen.active{
+    display:block;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.container{
+    max-width:1300px;
+    margin:auto;
+    padding:0 25px;
+}
+
 .hero{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:120px 20px 70px;
-background:
-radial-gradient(circle at 50% 25%,rgba(255,255,255,.13),transparent 30%),
-linear-gradient(180deg,#080808,#050505)
+    min-height:calc(100vh - 74px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:80px 20px;
+    background:
+    radial-gradient(circle at 50% 10%,rgba(255,255,255,.13),transparent 32%),
+    linear-gradient(#090909,#050505);
 }
-.heroContent{max-width:900px}
+
+.hero-content{
+    max-width:950px;
+}
+
 .badge{
-display:inline-block;
-padding:8px 15px;
-border:1px solid #333;
-border-radius:50px;
-color:#aaa;
-font-size:12px;
-letter-spacing:2px;
-margin-bottom:25px
+    display:inline-block;
+    padding:9px 18px;
+    border:1px solid #333;
+    border-radius:50px;
+    color:#999;
+    font-size:11px;
+    letter-spacing:2px;
+    margin-bottom:25px;
 }
+
 .hero h1{
-font-size:clamp(50px,9vw,110px);
-line-height:.9;
-letter-spacing:-5px;
-margin-bottom:25px
+    font-size:clamp(60px,11vw,130px);
+    line-height:.82;
+    letter-spacing:-7px;
+    margin-bottom:35px;
 }
+
 .hero p{
-max-width:600px;
-margin:auto;
-color:#999;
-font-size:17px;
-line-height:1.7
+    max-width:680px;
+    margin:auto;
+    color:#999;
+    line-height:1.8;
 }
-.searchBox{
-max-width:650px;
-margin:40px auto 0;
-display:flex;
-background:#111;
-border:1px solid #333;
-padding:7px;
-border-radius:50px
+
+.search-box{
+    max-width:700px;
+    margin:40px auto 0;
+    padding:7px;
+    display:flex;
+    background:#111;
+    border:1px solid #333;
+    border-radius:50px;
 }
-.searchBox input{
-flex:1;
-background:none;
-border:0;
-outline:none;
-color:#fff;
-padding:15px 20px;
-font-size:15px
+
+.search-box input{
+    flex:1;
+    min-width:0;
+    background:none;
+    border:0;
+    outline:0;
+    color:#fff;
+    padding:15px 20px;
+    font-size:15px;
 }
-.searchBox button{
-border:0;
-background:#fff;
-color:#000;
-border-radius:40px;
-padding:0 25px;
-font-weight:800;
-cursor:pointer
+
+.search-box button{
+    background:#fff;
+    color:#000;
+    border:0;
+    padding:0 25px;
+    border-radius:40px;
+    font-weight:bold;
 }
-section{
-max-width:1250px;
-margin:auto;
-padding:90px 25px
+
+.section{
+    padding:90px 0;
 }
-.sectionTitle{
-display:flex;
-justify-content:space-between;
-align-items:end;
-margin-bottom:35px
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:35px;
 }
-.sectionTitle h2{font-size:38px}
-.sectionTitle p{color:#777}
-.filters{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-bottom:30px
+
+.section-head h2{
+    font-size:42px;
 }
-.filter{
-background:#111;
-color:#aaa;
-border:1px solid #292929;
-padding:10px 18px;
-border-radius:30px;
-cursor:pointer
+
+.section-head p{
+    color:#777;
+    margin-top:8px;
 }
-.filter.active,.filter:hover{
-background:#fff;
-color:#000
+
+.btn{
+    border:0;
+    padding:14px 22px;
+    border-radius:13px;
+    font-weight:bold;
+    transition:.3s;
 }
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+    background:#fff;
+    color:#000;
+}
+
+.btn-dark{
+    background:#202020;
+    color:#fff;
+    border:1px solid #333;
+}
+
+.btn-green{
+    background:#25D366;
+    color:#fff;
+}
+
 .products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;
 }
-.card{
-background:linear-gradient(145deg,#151515,#090909);
-border:1px solid #252525;
-border-radius:25px;
-padding:20px;
-transition:.4s;
-position:relative;
-overflow:hidden
+
+.product-card{
+    background:linear-gradient(145deg,#151515,#090909);
+    border:1px solid #252525;
+    border-radius:25px;
+    padding:18px;
+    transition:.35s;
 }
-.card:hover{
-transform:translateY(-8px);
-border-color:#555;
-box-shadow:0 20px 50px rgba(0,0,0,.5)
+
+.product-card:hover{
+    transform:translateY(-7px);
+    border-color:#555;
+    box-shadow:0 25px 60px rgba(0,0,0,.5);
 }
-.phoneImg{
-height:250px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#0d0d0d;
-border-radius:20px;
-margin-bottom:20px;
-font-size:100px
+
+.product-image{
+    height:260px;
+    border-radius:20px;
+    background:#090909;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:100px;
+    margin-bottom:20px;
+    cursor:pointer;
 }
-.card h3{font-size:20px;margin-bottom:8px}
-.card .brand{color:#777;font-size:13px;margin-bottom:12px}
-.price{font-size:22px;font-weight:800;margin-bottom:15px}
-.stock{color:#55d88a;font-size:12px;margin-bottom:15px}
-.card button{
-width:100%;
-padding:13px;
-border:0;
-border-radius:12px;
-background:#fff;
-color:#000;
-font-weight:800;
-cursor:pointer
+
+.brand{
+    color:#777;
+    font-size:12px;
+    margin-bottom:8px;
 }
-.empty{
-text-align:center;
-padding:60px;
-color:#777;
-display:none
+
+.product-card h3{
+    font-size:20px;
+    margin-bottom:12px;
 }
-.location{
-background:linear-gradient(145deg,#111,#080808);
-border:1px solid #292929;
-border-radius:30px;
-padding:45px;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-align-items:center
+
+.product-price{
+    font-size:22px;
+    font-weight:900;
+    margin:12px 0;
 }
-.location h2{font-size:42px;margin-bottom:15px}
-.location p{color:#999;line-height:1.8}
-.map{
-height:300px;
-border-radius:25px;
-background:#151515;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:#aaa;
-border:1px solid #292929
+
+.stock{
+    color:#55d88a;
+    font-size:12px;
+    margin-bottom:15px;
 }
-.map a{
-color:#fff;
-text-decoration:none;
-border:1px solid #555;
-padding:12px 20px;
-border-radius:30px;
-display:inline-block;
-margin-top:15px
+
+.card-buttons{
+    display:flex;
+    gap:8px;
 }
+
+.card-buttons .btn{
+    flex:1;
+}
+
+.page-header{
+    text-align:center;
+    padding:90px 20px 60px;
+    background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.1),transparent 35%);
+}
+
+.page-header h1{
+    font-size:65px;
+    letter-spacing:-4px;
+}
+
+.page-header p{
+    color:#888;
+    margin-top:15px;
+}
+
+.filters{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:30px 0;
+}
+
+.filter{
+    background:#111;
+    color:#999;
+    border:1px solid #292929;
+    padding:10px 18px;
+    border-radius:30px;
+}
+
+.filter.active,
+.filter:hover{
+    background:#fff;
+    color:#000;
+}
+
+.product-detail{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    padding:80px 0;
+}
+
+.detail-image{
+    min-height:580px;
+    background:#101010;
+    border:1px solid #252525;
+    border-radius:35px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:190px;
+}
+
+.detail-info{
+    padding-top:30px;
+}
+
+.detail-info h1{
+    font-size:58px;
+    margin:15px 0;
+}
+
+.detail-info p{
+    color:#999;
+    line-height:1.8;
+}
+
+.detail-price{
+    font-size:38px;
+    font-weight:900;
+    margin:25px 0;
+}
+
+.specs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin:30px 0;
+}
+
+.spec{
+    background:#111;
+    border:1px solid #292929;
+    padding:16px;
+    border-radius:12px;
+}
+
+.spec small{
+    color:#777;
+}
+
+.cart-layout{
+    display:grid;
+    grid-template-columns:1fr 360px;
+    gap:25px;
+    padding:70px 0;
+}
+
+.cart-list,
+.summary,
+.checkout-box,
+.success-box,
+.admin-box,
+.store-card{
+    background:#101010;
+    border:1px solid #252525;
+    border-radius:25px;
+    padding:28px;
+}
+
+.cart-item{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:20px 0;
+    border-bottom:1px solid #252525;
+}
+
+.cart-icon{
+    width:90px;
+    height:90px;
+    background:#080808;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+}
+
+.cart-info{
+    flex:1;
+}
+
+.cart-info small{
+    color:#777;
+}
+
+.quantity{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.quantity button{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    border:1px solid #333;
+    background:#111;
+    color:#fff;
+}
+
+.remove{
+    background:none;
+    border:0;
+    color:#ff5d5d;
+}
+
+.summary{
+    height:max-content;
+    position:sticky;
+    top:100px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    color:#999;
+    padding:12px 0;
+}
+
+.summary-total{
+    border-top:1px solid #333;
+    margin-top:10px;
+    padding-top:20px;
+    color:#fff;
+    font-size:24px;
+    font-weight:900;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    color:#999;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    background:#080808;
+    border:1px solid #333;
+    color:#fff;
+    padding:15px;
+    border-radius:12px;
+    outline:none;
+}
+
+.form-group textarea{
+    height:110px;
+    resize:none;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.store-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    padding:70px 0;
+}
+
+.store-card h2{
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.store-card p{
+    color:#999;
+    line-height:1.8;
+    margin-bottom:14px;
+}
+
+.map-box{
+    min-height:430px;
+    background:radial-gradient(circle,#222,#0c0c0c);
+    border:1px solid #292929;
+    border-radius:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.success-box{
+    max-width:700px;
+    margin:90px auto;
+    text-align:center;
+}
+
+.success-icon{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#193c2b;
+    color:#55d88a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 25px;
+    font-size:45px;
+}
+
+.order-id{
+    background:#080808;
+    border:1px solid #333;
+    padding:18px;
+    border-radius:15px;
+    margin:25px 0;
+    font-weight:bold;
+}
+
+.admin-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.admin-table th,
+.admin-table td{
+    padding:15px;
+    text-align:left;
+    border-bottom:1px solid #292929;
+}
+
+.admin-table th{
+    color:#777;
+}
+
+.status{
+    background:#193c2b;
+    color:#55d88a;
+    padding:7px 12px;
+    border-radius:30px;
+    font-size:12px;
+}
+
 footer{
-border-top:1px solid #222;
-padding:45px 25px;
-text-align:center;
-color:#666
+    border-top:1px solid #222;
+    padding:50px 25px;
+    text-align:center;
+    color:#666;
 }
-.overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.75);
-backdrop-filter:blur(10px);
-z-index:2000;
-display:none
-}
-.overlay.show{display:block}
-.cartPanel{
-position:absolute;
-right:0;
-top:0;
-height:100%;
-width:min(500px,100%);
-background:#0b0b0b;
-border-left:1px solid #333;
-padding:30px;
-overflow-y:auto
-}
-.close{
-float:right;
-font-size:28px;
-cursor:pointer
-}
-.cartPanel h2{margin:20px 0 30px}
-.cartItem{
-display:flex;
-justify-content:space-between;
-gap:15px;
-padding:18px 0;
-border-bottom:1px solid #222
-}
-.cartItem small{color:#777}
-.total{
-font-size:25px;
-font-weight:800;
-margin:25px 0
-}
-.checkout{
-width:100%;
-padding:15px;
-border:0;
-border-radius:12px;
-background:#fff;
-color:#000;
-font-weight:800;
-cursor:pointer
-}
-.formBox{
-display:none;
-margin-top:25px;
-padding:25px;
-background:#111;
-border:1px solid #292929;
-border-radius:20px
-}
-.formBox.show{display:block}
-.formBox input,.formBox select,.formBox textarea{
-width:100%;
-margin:7px 0;
-padding:14px;
-background:#080808;
-border:1px solid #333;
-border-radius:10px;
-color:#fff;
-outline:none
-}
-.formBox textarea{height:80px;resize:none}
-.orderBtn{
-width:100%;
-padding:14px;
-margin-top:10px;
-border:0;
-border-radius:10px;
-background:#25D366;
-color:#fff;
-font-weight:800;
-cursor:pointer
-}
+
 .toast{
-position:fixed;
-bottom:25px;
-left:50%;
-transform:translateX(-50%) translateY(100px);
-background:#fff;
-color:#000;
-padding:14px 25px;
-border-radius:50px;
-font-weight:700;
-z-index:3000;
-transition:.4s
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translate(-50%,120px);
+    background:#fff;
+    color:#000;
+    padding:15px 25px;
+    border-radius:50px;
+    font-weight:bold;
+    z-index:5000;
+    transition:.4s;
 }
-.toast.show{transform:translateX(-50%) translateY(0)}
-@media(max-width:700px){
-.navlinks{display:none}
-.hero h1{letter-spacing:-3px}
-.sectionTitle{display:block}
-.sectionTitle p{margin-top:10px}
-.location{grid-template-columns:1fr;padding:25px}
-.location h2{font-size:32px}
+
+.toast.show{
+    transform:translate(-50%,0);
 }
+
+@media(max-width:800px){
+
+    .nav-inner{
+        padding:0 15px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .nav-links button:not(.cart-btn){
+        display:none;
+    }
+
+    .hero h1{
+        font-size:65px;
+        letter-spacing:-4px;
+    }
+
+    .search-box{
+        border-radius:20px;
+    }
+
+    .section-head{
+        display:block;
+    }
+
+    .section-head .btn{
+        margin-top:20px;
+    }
+
+    .page-header h1{
+        font-size:45px;
+    }
+
+    .product-detail,
+    .cart-layout,
+    .store-grid{
+        grid-template-columns:1fr;
+    }
+
+    .detail-image{
+        min-height:400px;
+        font-size:130px;
+    }
+
+    .detail-info h1{
+        font-size:42px;
+    }
+
+    .summary{
+        position:static;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .cart-item{
+        flex-wrap:wrap;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="nav">
-<div class="logo">TOUCH <span>MOBILES</span></div>
-<div class="navlinks">
-<a href="#home">Home</a>
-<a href="#mobiles">Mobiles</a>
-<a href="#location">Store</a>
+<header class="navbar">
+
+<div class="nav-inner">
+
+<button class="logo" onclick="showPage('home')">
+TOUCH <span>MOBILES</span>
+</button>
+
+<nav class="nav-links">
+
+<button onclick="showPage('home')">
+Home
+</button>
+
+<button onclick="showPage('mobiles')">
+Mobiles
+</button>
+
+<button onclick="showPage('store')">
+Store
+</button>
+
+<button class="cart-btn" onclick="showPage('cart')">
+Cart (<span id="cartCount">0</span>)
+</button>
+
+</nav>
+
 </div>
-<button class="cartBtn" onclick="openCart()">Cart <span id="cartCount">0</span></button>
-</div>
+
 </header>
 
-<main>
 
-<section class="hero" id="home">
-<div class="heroContent">
-<div class="badge">NARSIPATNAM'S MOBILE STORE</div>
-<h1>TOUCH<br>MOBILES</h1>
-<p>Latest smartphones, trusted service and a simple local shopping experience. Choose your phone, add it to cart and place your order directly with TOUCH MOBILES.</p>
+<!-- HOME -->
 
-<div class="searchBox">
-<input type="text" id="search" placeholder="Search iPhone, Samsung, OnePlus...">
-<button onclick="searchProducts()">Search</button>
+<div id="home" class="screen active">
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+TOUCH MOBILES · NARSIPATNAM
 </div>
+
+<h1>
+TOUCH<br>MOBILES
+</h1>
+
+<p>
+Your local destination for the latest smartphones.
+Explore mobiles, compare your choices and place your
+order directly with TOUCH MOBILES.
+</p>
+
+<div class="search-box">
+
+<input
+id="homeSearch"
+placeholder="Search iPhone, Samsung, OnePlus..."
+>
+
+<button onclick="goHomeSearch()">
+Search
+</button>
+
 </div>
+
+</div>
+
 </section>
 
-<section id="mobiles">
-<div class="sectionTitle">
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-head">
+
 <div>
-<h2>Explore Mobiles</h2>
-<p>Find your next smartphone from our collection.</p>
+
+<h2>Shop Smartphones</h2>
+
+<p>
+Explore popular smartphone brands.
+</p>
+
 </div>
+
+<button
+class="btn btn-primary"
+onclick="showPage('mobiles')">
+
+View All Mobiles
+
+</button>
+
 </div>
+
+
+<div class="products">
+
+<div class="product-card">
+
+<div class="product-image">
+🍎
+</div>
+
+<div class="brand">
+APPLE
+</div>
+
+<h3>
+iPhone Collection
+</h3>
+
+<p style="color:#777;margin:15px 0">
+Powerful. Beautiful. iPhone.
+</p>
+
+<button
+class="btn btn-primary"
+onclick="showPage('mobiles');filterBrand('Apple')">
+
+Explore Apple
+
+</button>
+
+</div>
+
+
+<div class="product-card">
+
+<div class="product-image">
+📱
+</div>
+
+<div class="brand">
+SAMSUNG
+</div>
+
+<h3>
+Galaxy Collection
+</h3>
+
+<p style="color:#777;margin:15px 0">
+Innovation for every day.
+</p>
+
+<button
+class="btn btn-primary"
+onclick="showPage('mobiles');filterBrand('Samsung')">
+
+Explore Samsung
+
+</button>
+
+</div>
+
+
+<div class="product-card">
+
+<div class="product-image">
+⚡
+</div>
+
+<div class="brand">
+ONEPLUS
+</div>
+
+<h3>
+OnePlus Collection
+</h3>
+
+<p style="color:#777;margin:15px 0">
+Fast. Smooth. Powerful.
+</p>
+
+<button
+class="btn btn-primary"
+onclick="showPage('mobiles');filterBrand('OnePlus')">
+
+Explore OnePlus
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- MOBILES -->
+
+<div id="mobiles" class="screen">
+
+<section class="page-header">
+
+<div class="container">
+
+<div class="badge">
+TOUCH MOBILES COLLECTION
+</div>
+
+<h1>
+All Mobiles
+</h1>
+
+<p>
+Find your next smartphone.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="search-box">
+
+<input
+id="mobileSearch"
+placeholder="Search mobile or brand..."
+oninput="renderProducts()"
+>
+
+<button>
+Search
+</button>
+
+</div>
+
 
 <div class="filters">
-<button class="filter active" onclick="filterBrand('All',this)">All</button>
-<button class="filter" onclick="filterBrand('Apple',this)">Apple</button>
-<button class="filter" onclick="filterBrand('Samsung',this)">Samsung</button>
-<button class="filter" onclick="filterBrand('OnePlus',this)">OnePlus</button>
-<button class="filter" onclick="filterBrand('Vivo',this)">Vivo</button>
-<button class="filter" onclick="filterBrand('Realme',this)">Realme</button>
+
+<button class="filter active"
+data-brand="All"
+onclick="filterBrand('All')">
+All
+</button>
+
+<button class="filter"
+data-brand="Apple"
+onclick="filterBrand('Apple')">
+Apple
+</button>
+
+<button class="filter"
+data-brand="Samsung"
+onclick="filterBrand('Samsung')">
+Samsung
+</button>
+
+<button class="filter"
+data-brand="OnePlus"
+onclick="filterBrand('OnePlus')">
+OnePlus
+</button>
+
+<button class="filter"
+data-brand="Vivo"
+onclick="filterBrand('Vivo')">
+Vivo
+</button>
+
+<button class="filter"
+data-brand="Realme"
+onclick="filterBrand('Realme')">
+Realme
+</button>
+
 </div>
 
-<div class="products" id="products"></div>
-<div class="empty" id="empty">No mobiles found. Try another search.</div>
+
+<div id="products" class="products"></div>
+
+<div id="emptyProducts"
+style="display:none;text-align:center;padding:70px;color:#777">
+
+No mobiles found.
+
+</div>
+
+</div>
+
 </section>
 
-<section id="location">
-<div class="location">
-<div>
-<div class="badge">VISIT OUR STORE</div>
-<h2>TOUCH MOBILES</h2>
-<p>Looking for a new smartphone in Narsipatnam? Visit our local store for mobiles, accessories and personal assistance.</p>
-<p><strong>📍 Narsipatnam, Andhra Pradesh</strong></p>
-<p>Open Google Maps for directions and find our store location.</p>
-<a href="https://www.google.com/maps/search/?api=1&query=Touch+Mobiles+Narsipatnam+Andhra+Pradesh" target="_blank">Open Location ↗</a>
 </div>
-<div class="map">
-<div>
-<h3>📍 TOUCH MOBILES</h3>
-<p>Narsipatnam, Andhra Pradesh</p>
-<a href="https://www.google.com/maps/search/?api=1&query=Touch+Mobiles+Narsipatnam+Andhra+Pradesh" target="_blank">Get Directions</a>
+
+
+<!-- PRODUCT -->
+
+<div id="product" class="screen">
+
+<div class="container">
+
+<div id="productDetail" class="product-detail"></div>
+
 </div>
+
 </div>
+
+
+<!-- CART -->
+
+<div id="cart" class="screen">
+
+<section class="page-header">
+
+<div class="container">
+
+<h1>
+Your Cart
+</h1>
+
+<p>
+Review your selected smartphones.
+</p>
+
 </div>
+
 </section>
+
+
+<main class="container">
+
+<div class="cart-layout">
+
+<div class="cart-list">
+
+<h2>
+Selected Mobiles
+</h2>
+
+<div id="cartList"></div>
+
+</div>
+
+
+<div class="summary">
+
+<h2>
+Order Summary
+</h2>
+
+<div class="summary-row">
+
+<span>Subtotal</span>
+
+<strong id="subtotal">
+₹0
+</strong>
+
+</div>
+
+<div class="summary-row">
+
+<span>Delivery</span>
+
+<strong>
+Contact Store
+</strong>
+
+</div>
+
+<div class="summary-row summary-total">
+
+<span>Total</span>
+
+<strong id="cartTotal">
+₹0
+</strong>
+
+</div>
+
+<button
+class="btn btn-primary"
+style="width:100%;margin-top:25px"
+onclick="goCheckout()">
+
+Proceed to Checkout
+
+</button>
+
+</div>
+
+</div>
 
 </main>
 
+</div>
+
+
+<!-- CHECKOUT -->
+
+<div id="checkout" class="screen">
+
+<section class="page-header">
+
+<div class="container">
+
+<h1>
+Checkout
+</h1>
+
+<p>
+Enter your details to place your order.
+</p>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+<div class="cart-layout">
+
+<div class="checkout-box">
+
+<h2>
+Customer Details
+</h2>
+
+<br>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>
+Full Name *
+</label>
+
+<input
+id="customerName"
+placeholder="Enter your name"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Mobile Number *
+</label>
+
+<input
+id="customerPhone"
+placeholder="Enter mobile number"
+>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+Delivery Address *
+</label>
+
+<input
+id="customerAddress"
+placeholder="House number, street, landmark"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Area / Village
+</label>
+
+<input
+id="customerArea"
+placeholder="Example: Narsipatnam"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Order Type
+</label>
+
+<select id="orderType">
+
+<option>
+Store Pickup
+</option>
+
+<option>
+Home Delivery
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+Additional Note
+</label>
+
+<textarea
+id="customerNote"
+placeholder="Any special request..."
+></textarea>
+
+</div>
+
+</div>
+
+
+<button
+class="btn btn-green"
+style="width:100%;margin-top:15px"
+onclick="placeOrder()">
+
+📲 Place Order via WhatsApp
+
+</button>
+
+</div>
+
+
+<div class="summary">
+
+<h2>
+Your Order
+</h2>
+
+<br>
+
+<div id="checkoutSummary"></div>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+
+<!-- SUCCESS -->
+
+<div id="success" class="screen">
+
+<div class="container">
+
+<div id="successData" class="success-box"></div>
+
+</div>
+
+</div>
+
+
+<!-- STORE -->
+
+<div id="store" class="screen">
+
+<section class="page-header">
+
+<div class="container">
+
+<div class="badge">
+VISIT TOUCH MOBILES
+</div>
+
+<h1>
+Our Store
+</h1>
+
+<p>
+Find TOUCH MOBILES in Narsipatnam.
+</p>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+<div class="store-grid">
+
+
+<div class="store-card">
+
+<h2>
+TOUCH MOBILES
+</h2>
+
+<p>
+Your local destination for smartphones,
+accessories and personal assistance.
+</p>
+
+<p>
+📍 <strong>Narsipatnam</strong>
+</p>
+
+<p>
+🏪 <strong>Near PVR · Opposite BNEW</strong>
+</p>
+
+<p>
+Our store is located near PVR,
+opposite BNEW, Narsipatnam.
+</p>
+
+<p>
+Visit TOUCH MOBILES and explore the latest smartphones.
+</p>
+
+<button
+class="btn btn-primary"
+onclick="openMaps()">
+
+📍 Open Google Maps
+
+</button>
+
+</div>
+
+
+<div class="map-box">
+
+<div>
+
+<div style="font-size:65px">
+📍
+</div>
+
+<h2>
+TOUCH MOBILES
+</h2>
+
+<p style="color:#777;margin:12px 0 22px">
+
+PVR దగ్గర · BNEW Opposite<br>
+Narsipatnam, Andhra Pradesh
+
+</p>
+
+<button
+class="btn btn-primary"
+onclick="openMaps()">
+
+Get Directions
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<div id="admin" class="screen">
+
+<section class="page-header">
+
+<div class="container">
+
+<div class="badge">
+TOUCH MOBILES MANAGEMENT
+</div>
+
+<h1>
+Admin Dashboard
+</h1>
+
+<p>
+View orders saved on this browser.
+</p>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+<div class="admin-box">
+
+<h2>
+Orders
+</h2>
+
+<div style="overflow-x:auto">
+
+<table class="admin-table">
+
+<thead>
+
+<tr>
+
+<th>Order ID</th>
+<th>Customer</th>
+<th>Phone</th>
+<th>Total</th>
+<th>Type</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="ordersTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+
 <footer>
-TOUCH MOBILES © 2026 · Narsipatnam, Andhra Pradesh
+
+TOUCH MOBILES · PVR దగ్గర · BNEW Opposite · Narsipatnam
+
+<br><br>
+
+<button
+onclick="showPage('admin')"
+style="
+background:none;
+border:0;
+color:#444;
+font-size:11px;
+">
+
+Admin
+
+</button>
+
 </footer>
 
-<div class="overlay" id="cartOverlay">
-<div class="cartPanel">
-<span class="close" onclick="closeCart()">×</span>
-<h2>Your Cart</h2>
-<div id="cartItems"></div>
-<div class="total">Total: ₹<span id="total">0</span></div>
-<button class="checkout" onclick="showOrderForm()">Proceed to Order</button>
 
-<div class="formBox" id="orderForm">
-<h3>Order Details</h3>
-<input id="customerName" placeholder="Full Name">
-<input id="phone" placeholder="Mobile Number">
-<input id="address" placeholder="Delivery Address">
-<input id="area" placeholder="Area / Village">
-<select id="orderType">
-<option value="Store Pickup">Store Pickup</option>
-<option value="Home Delivery">Home Delivery</option>
-</select>
-<textarea id="note" placeholder="Additional Note"></textarea>
-<button class="orderBtn" onclick="placeOrder()">Place Order via WhatsApp</button>
-</div>
-</div>
+<div id="toast" class="toast">
+Added to cart ✓
 </div>
 
-<div class="toast" id="toast">Added to cart ✓</div>
 
 <script>
 
-const products=[
-{name:"iPhone 16",brand:"Apple",price:69999,icon:"📱"},
-{name:"iPhone 15",brand:"Apple",price:59999,icon:"📱"},
-{name:"Galaxy S25",brand:"Samsung",price:74999,icon:"📱"},
-{name:"Galaxy A56",brand:"Samsung",price:34999,icon:"📱"},
-{name:"OnePlus 13",brand:"OnePlus",price:69999,icon:"📱"},
-{name:"OnePlus Nord 5",brand:"OnePlus",price:32999,icon:"📱"},
-{name:"Vivo V50",brand:"Vivo",price:34999,icon:"📱"},
-{name:"Vivo T4",brand:"Vivo",price:24999,icon:"📱"},
-{name:"Realme GT",brand:"Realme",price:29999,icon:"📱"},
-{name:"Realme 14 Pro",brand:"Realme",price:26999,icon:"📱"}
-];
+/* ================================
+   TOUCH MOBILES SETTINGS
+================================ */
 
-let cart=[];
-let currentBrand="All";
+const whatsappNumber = "918333946505";
 
-function renderProducts(){
-const box=document.getElementById("products");
-const empty=document.getElementById("empty");
-const query=document.getElementById("search").value.toLowerCase();
+const storeLocation =
+"TOUCH MOBILES, PVR, BNEW opposite, Narsipatnam, Andhra Pradesh";
 
-const filtered=products.filter(p=>{
-const brandMatch=currentBrand==="All"||p.brand===currentBrand;
-const searchMatch=p.name.toLowerCase().includes(query)||p.brand.toLowerCase().includes(query);
-return brandMatch&&searchMatch;
-});
 
-box.innerHTML="";
-empty.style.display=filtered.length?"none":"block";
+/* ================================
+   PRODUCTS
+================================ */
 
-filtered.forEach((p,i)=>{
-box.innerHTML+=`
-<div class="card">
-<div class="phoneImg">${p.icon}</div>
-<div class="brand">${p.brand}</div>
-<h3>${p.name}</h3>
-<div class="stock">● Available</div>
-<div class="price">₹${p.price.toLocaleString("en-IN")}</div>
-<button onclick="addCart(${products.indexOf(p)})">Add to Cart</button>
-</div>`;
-});
-}
+const products = [
 
-function searchProducts(){renderProducts()}
+{
+id:1,
+name:"iPhone 16",
+brand:"Apple",
+price:69999,
+icon:"📱",
+description:"Powerful performance with an advanced camera system and beautiful display.",
+specs:["A18 Chip","48MP Camera","6.1 inch Display","128GB Storage"]
+},
 
-document.getElementById("search").addEventListener("input",renderProducts);
+{
+id:2,
+name:"iPhone 15",
+brand:"Apple",
+price:59999,
+icon:"📱",
+description:"A powerful iPhone with an advanced camera and excellent everyday performance.",
+specs:["A16 Bionic","48MP Camera","6.1 inch Display","128GB Storage"]
+},
 
-function filterBrand(brand,btn){
-currentBrand=brand;
-document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-renderProducts();
-}
+{
+id:3,
+name:"Galaxy S25",
+brand:"Samsung",
+price:74999,
+icon:"📱",
+description:"A premium Samsung smartphone with powerful performance and advanced camera experience.",
+specs:["Snapdragon Processor","50MP Camera","6.2 inch Display","256GB Storage"]
+},
 
-function addCart(index){
-cart.push(products[index]);
-updateCart();
-showToast();
-}
+{
+id:4,
+name:"Galaxy A56",
+brand:"Samsung",
+price:34999,
+icon:"📱",
+description:"A stylish smartphone designed for performance, entertainment and photography.",
+specs:["Octa Core","50MP Camera","6.7 inch Display","128GB Storage"]
+},
 
-function updateCart(){
-document.getElementById("cartCount").textContent=cart.length;
-const items=document.getElementById("cartItems");
-items.innerHTML="";
-let total=0;
+{
+id:5,
+name:"OnePlus 13",
+brand:"OnePlus",
+price:69999,
+icon:"📱",
+description:"Fast performance, smooth display and a flagship smartphone experience.",
+specs:["Snapdragon 8 Elite","50MP Camera","6.82 inch Display","256GB Storage"]
+},
 
-if(cart.length===0){
-items.innerHTML="<p style='color:#777'>Your cart is empty.</p>";
-}
-
-cart.forEach((p,i)=>{
-total+=p.price;
-items.innerHTML+=`
-<div class="cartItem">
-<div>
-<strong>${p.name}</strong><br>
-<small>${p.brand}</small>
-</div>
-<div>
-₹${p.price.toLocaleString("en-IN")}
-<br>
-<button onclick="removeCart(${i})" style="background:none;color:#777;border:0;cursor:pointer">Remove</button>
-</div>
-</div>`;
-});
-
-document.getElementById("total").textContent=total.toLocaleString("en-IN");
-}
-
-function removeCart(i){
-cart.splice(i,1);
-updateCart();
-}
-
-function openCart(){
-document.getElementById("cartOverlay").classList.add("show");
-updateCart();
-}
-
-function closeCart(){
-document.getElementById("cartOverlay").classList.remove("show");
-}
-
-function showOrderForm(){
-if(cart.length===0){
-alert("Please add a mobile to cart first.");
-return;
-}
-document.getElementById("orderForm").classList.add("show");
-}
-
-function placeOrder(){
-
-const name=document.getElementById("customerName").value;
-const phone=document.getElementById("phone").value;
-const address=document.getElementById("address").value;
-const area=document.getElementById("area").value;
-const type=document.getElementById("orderType").value;
-const note=document.getElementById("note").value;
-
-if(!name||!phone||!address){
-alert("Please fill Name, Mobile Number and Address.");
-return;
-}
-
-let order="TOUCH MOBILES ORDER%0A%0A";
-order+="Customer: "+name+"%0A";
-order+="Phone: "+phone+"%0A";
-order+="Address: "+address+"%0A";
-order+="Area: "+area+"%0A";
-order+="Order Type: "+type+"%0A";
-order+="Note: "+note+"%0A%0A";
-order+="Products:%0A";
-
-let total=0;
-
-cart.forEach(p=>{
-order+="- "+p.name+" ("+p.brand+") - ₹"+p.price.toLocaleString("en-IN")+"%0A";
-total+=p.price;
-});
-
-order+="%0ATotal: ₹"+total.toLocaleString("en-IN");
-
-const whatsappNumber="919999999999";
-
-window.open("https://wa.me/"+whatsappNumber+"?text="+order,"_blank");
-}
-
-function showToast(){
-const toast=document.getElementById("toast");
-toast.classList.add("show");
-setTimeout(()=>toast.classList.remove("show"),2000);
-}
-
-renderProducts();
-
-</script>
-
-</body>
-</html>
+{
+id:6,
+name:"On
